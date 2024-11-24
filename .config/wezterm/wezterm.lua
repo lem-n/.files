@@ -18,22 +18,27 @@ config.window_close_confirmation = "NeverPrompt"
 local opacity = 0.75
 config.window_background_opacity = opacity
 
-config.initial_cols = 120
-config.initial_rows = 40
+config.initial_cols = 140
+config.initial_rows = 35
 config.max_fps = 240
 config.animation_fps = 24
 config.front_end = "OpenGL"
 config.term = "xterm-256color"
-config.cell_width = 0.9
+config.cell_width = 0.8
+config.line_height = 1
+-- config.allow_square_glyphs_to_overflow_width = "Never"
 
 -- Theme and Font
 config.color_scheme = "Catppuccin Mocha"
 config.font = wt.font_with_fallback({
-	{ family = "Iosevka Custom", weight = 500, italic = false },
+	-- Zed Mono settings | cell_width=0.9, line_height=0.9, allow_square_glyphs=Never
+	-- { family = "Zed Mono", weight = 500, italic = false, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
+	-- Iosevka Custom settings | cell_width=0.9, line_height=1, allow_square_glyphs=WhenFollowedBySpace
+	{ family = "Iosevka Custom", weight = 500, italic = false, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
 	{ family = "Sarasa Mono J", weight = 500, italic = false },
 })
 
-config.font_size = 15
+config.font_size = 16
 
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.audible_bell = "Disabled"

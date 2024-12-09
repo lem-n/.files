@@ -2,6 +2,17 @@ local wt = require("wezterm")
 local act = wt.action
 local config = wt.config_builder()
 
+-- colorscheme overrides
+local custom_cat = wt.color.get_builtin_schemes()["Catppuccin Mocha"]
+custom_cat.background = "#08080d"
+custom_cat.tab_bar.background = "#040404"
+custom_cat.tab_bar.inactive_tab.bg_color = "#0f0f0f"
+custom_cat.tab_bar.new_tab.bg_color = "#080808"
+config.color_schemes = {
+	["CustomCatppuccin"] = custom_cat,
+}
+config.color_scheme = "CustomCatppuccin"
+
 wt.on("toggle-opacity", function(win)
 	local overrides = win:get_config_overrides() or {}
 	if not overrides.window_background_opacity then
@@ -18,27 +29,31 @@ config.window_close_confirmation = "NeverPrompt"
 local opacity = 0.75
 config.window_background_opacity = opacity
 
+config.enable_scroll_bar = true
 config.initial_cols = 140
-config.initial_rows = 35
+config.initial_rows = 30
 config.max_fps = 240
 config.animation_fps = 24
 config.front_end = "OpenGL"
 config.term = "xterm-256color"
-config.cell_width = 0.8
+config.cell_width = 0.9
 config.line_height = 1
--- config.allow_square_glyphs_to_overflow_width = "Never"
+config.allow_square_glyphs_to_overflow_width = "Never"
 
 -- Theme and Font
-config.color_scheme = "Catppuccin Mocha"
 config.font = wt.font_with_fallback({
-	-- Zed Mono settings | cell_width=0.9, line_height=0.9, allow_square_glyphs=Never
-	-- { family = "Zed Mono", weight = 500, italic = false, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
-	-- Iosevka Custom settings | cell_width=0.9, line_height=1, allow_square_glyphs=WhenFollowedBySpace
-	{ family = "Iosevka Custom", weight = 500, italic = false, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
+	-- Personal Iosevka Config
+	{
+		family = "Iosevka Rvn",
+		weight = 500,
+		italic = false,
+		harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	},
+	-- { family = "Iosevka Custom", weight = 500, italic = false, harfbuzz_features = { "calt=0", "clig=0", "liga=0" } },
 	{ family = "Sarasa Mono J", weight = 500, italic = false },
 })
 
-config.font_size = 16
+config.font_size = 17
 
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.audible_bell = "Disabled"
